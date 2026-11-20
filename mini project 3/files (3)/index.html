@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>CyberShield</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ctext y='20' font-size='20'%3E%F0%9F%9B%A1%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060A13;--s1:rgba(255,255,255,.035);--s2:rgba(255,255,255,.065);--ln:rgba(255,255,255,.09);--tx:#E9EFF8;--mu:#8696B0;--a:#38E1FF;--b:#8B7BFF;--ok:#3DDC97;--wn:#FFB84D;--bd:#FF6B7A;--r:16px;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(900px 500px at 82% -8%,rgba(56,225,255,.16),transparent 60%),radial-gradient(800px 520px at -8% 105%,rgba(139,123,255,.18),transparent 55%)}
+body:after{content:"";position:fixed;inset:0;z-index:-1;background-image:linear-gradient(var(--ln) 1px,transparent 1px),linear-gradient(90deg,var(--ln) 1px,transparent 1px);background-size:56px 56px;opacity:.32;-webkit-mask-image:radial-gradient(ellipse at 50% 0,#000 15%,transparent 72%);mask-image:radial-gradient(ellipse at 50% 0,#000 15%,transparent 72%)}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em;margin:0}h1{font-size:2rem;line-height:1.15}h2{font-size:1.2rem}
+a{color:var(--a);text-decoration:none}p{margin:0 0 10px}.mu{color:var(--mu)}.mono{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.82rem;color:var(--mu)}
+.app{display:grid;grid-template-columns:248px 1fr;min-height:100vh}
+.side{position:sticky;top:0;height:100vh;padding:22px 16px;border-right:1px solid var(--ln);background:rgba(8,13,24,.72);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);display:flex;flex-direction:column;gap:6px}
+.logo{display:flex;gap:10px;align-items:center;font:700 1.15rem 'Space Grotesk',sans-serif;padding:4px 10px 18px}
+.logo i{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;box-shadow:0 0 24px rgba(56,225,255,.4)}
+.nav{display:grid;gap:4px}.nav a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;color:var(--mu);font-weight:500;transition:.2s}
+.nav a:hover{background:var(--s1);color:var(--tx)}.nav a.on{background:linear-gradient(90deg,rgba(56,225,255,.15),rgba(139,123,255,.07));color:var(--tx);box-shadow:inset 2px 0 var(--a)}
+.nav svg,.who svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.who{margin-top:auto;padding:12px;border:1px solid var(--ln);border-radius:14px;background:var(--s1);display:flex;gap:10px;align-items:center}.who a{color:var(--mu);margin-left:auto}.who a:hover{color:var(--bd)}
+.av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--b),var(--a));display:grid;place-items:center;font-weight:700;color:#06101c}
+.main{padding:36px clamp(18px,4vw,48px) 64px;max-width:1140px;width:100%}
+.page{animation:rise .5s cubic-bezier(.2,.7,.2,1) both}.stg>*{animation:rise .55s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i,0)*55ms)}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes float{50%{transform:translateY(-10px)}}
+.sub{color:var(--mu);margin:6px 0 24px}.mt{margin-top:18px}.mt2{margin-top:34px}
+.card{background:var(--s1);border:1px solid var(--ln);border-radius:var(--r);padding:22px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:.25s}
+.card.hv{cursor:pointer}.card.hv:hover{transform:translateY(-3px);border-color:rgba(56,225,255,.4);box-shadow:0 14px 40px rgba(0,0,0,.35)}
+.grid{display:grid;gap:16px}.g3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}.g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.row{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));align-items:end}
+.hd{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap;margin-bottom:22px}.meta{display:flex;gap:10px;align-items:center;margin-top:8px;flex-wrap:wrap}.back{display:inline-block;color:var(--mu);margin-bottom:14px}.back:hover{color:var(--a)}
+.btn{display:inline-block;font:600 .92rem Inter,sans-serif;border:0;border-radius:12px;padding:11px 18px;color:#04121c;background:linear-gradient(135deg,var(--a),#7ee8ff 40%,var(--b));cursor:pointer;transition:.25s;box-shadow:0 6px 24px rgba(56,225,255,.25)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(56,225,255,.4)}.btn.gh{background:var(--s2);color:var(--tx);box-shadow:none;border:1px solid var(--ln)}.btn.gh:hover{border-color:var(--a)}
+.btn[disabled]{opacity:.5;pointer-events:none}.wide{width:100%;margin-top:6px}
+label.f{display:block;font-size:.74rem;color:var(--mu);font-weight:600;margin-bottom:7px;text-transform:uppercase;letter-spacing:.07em}
+input,select,textarea{width:100%;font:inherit;color:var(--tx);background:rgba(255,255,255,.04);border:1px solid var(--ln);border-radius:12px;padding:11px 14px;outline:0;transition:.2s}
+select option{background:#0d1626}input:focus,select:focus,textarea:focus{border-color:var(--a);box-shadow:0 0 0 3px rgba(56,225,255,.15)}textarea{min-height:100px;resize:vertical}
+input[type=range]{padding:0;accent-color:#38E1FF}input[type=file]{padding:9px}
+.seg{display:inline-flex;flex-wrap:wrap;gap:2px;padding:3px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid var(--ln)}
+.seg button{border:0;background:none;color:var(--mu);padding:7px 14px;border-radius:9px;font:500 .85rem Inter,sans-serif;cursor:pointer;transition:.2s}.seg button:hover{color:var(--tx)}
+.seg button.on{background:linear-gradient(135deg,var(--a),var(--b));color:#04121c;font-weight:600}
+.q{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--ln);flex-wrap:wrap}.q:last-child{border:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{padding:7px 14px;border-radius:99px;border:1px solid var(--ln);background:var(--s1);color:var(--mu);cursor:pointer;font:500 .85rem Inter,sans-serif;transition:.2s}
+.chip:hover{color:var(--tx)}.chip.on{border-color:var(--a);color:var(--a);background:rgba(56,225,255,.1)}
+.pill{--c:#8696B0;display:inline-flex;align-items:center;padding:3px 11px;border-radius:99px;font-size:.76rem;font-weight:600;color:var(--c);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);background:color-mix(in srgb,var(--c) 12%,transparent);white-space:nowrap;flex:none}
+.note{margin-top:14px;padding:12px 14px;border-radius:12px;background:rgba(255,184,77,.1);border:1px solid rgba(255,184,77,.3);color:#ffd9a0;font-size:.88rem}.er{color:var(--bd);min-height:1.3em;margin:10px 0 0;font-size:.88rem}
+.ring{position:relative;flex:none}.ring svg{transform:rotate(-90deg)}.ring circle{fill:none;stroke-width:8;stroke-linecap:round}.ring .tr{stroke:var(--ln)}
+.ring .pg{stroke:url(#g);transition:stroke-dashoffset 1s cubic-bezier(.2,.7,.2,1);filter:drop-shadow(0 0 5px rgba(56,225,255,.55))}.ring b{position:absolute;inset:0;display:grid;place-items:center;font:700 1.6rem 'Space Grotesk',sans-serif}.ring.sm b{font-size:.95rem}
+.ctr{display:flex;gap:20px;align-items:center}.big{font:700 1.1rem 'Space Grotesk',sans-serif}
+.stat span{color:var(--mu);font-size:.76rem;text-transform:uppercase;letter-spacing:.07em;font-weight:600}.stat b{display:block;font:700 2.2rem/1.25 'Space Grotesk',sans-serif;margin-top:4px}
+.split{display:grid;grid-template-columns:1.5fr 1fr;gap:22px;align-items:start}.steps{display:grid;gap:10px;margin-top:14px}
+.step{display:flex;gap:14px;padding:14px 16px;border:1px solid var(--ln);border-radius:14px;background:var(--s1);cursor:pointer;transition:.25s;align-items:flex-start}
+.step:hover{border-color:rgba(56,225,255,.4);transform:translateX(3px)}.step.ro{cursor:default}.step.ro:hover{transform:none;border-color:var(--ln)}
+.step .bx{flex:none;width:22px;height:22px;border-radius:7px;border:1.5px solid var(--mu);display:grid;place-items:center;transition:.25s;margin-top:1px}
+.step .bx svg{width:14px;height:14px;stroke:#04121c;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:20;stroke-dashoffset:20;transition:.3s .05s}
+.step.dn{opacity:.6}.step.dn .bx{background:linear-gradient(135deg,var(--a),var(--b));border-color:transparent}.step.dn .bx svg{stroke-dashoffset:0}.step.dn .tt{text-decoration:line-through;text-decoration-color:var(--mu)}
+.step small{display:block;color:var(--mu);margin-top:3px;font-size:.83rem}.step .pill{margin-left:auto}
+.ck{display:flex;gap:10px;align-items:flex-start;padding:8px 0;cursor:pointer}.ck input{width:auto;margin-top:4px;accent-color:#38E1FF}
+.ev{display:flex;gap:12px;padding:9px 0}.ev i{flex:none;width:9px;height:9px;border-radius:50%;background:var(--a);margin-top:7px;box-shadow:0 0 10px var(--a)}.ev small{color:var(--mu)}
+.br{display:grid;grid-template-columns:150px 1fr 34px;gap:12px;align-items:center;margin:11px 0;font-size:.9rem}.br b{text-align:right}.tk{height:8px;border-radius:99px;background:var(--s2);overflow:hidden}
+.tk i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--a),var(--b));transition:width 1s cubic-bezier(.2,.7,.2,1)}
+.wrap{overflow-x:auto}.tbl{width:100%;border-collapse:collapse;min-width:620px}.tbl th{text-align:left;font:600 .72rem Inter,sans-serif;color:var(--mu);text-transform:uppercase;letter-spacing:.07em;padding:10px 12px;border-bottom:1px solid var(--ln)}
+.tbl td{padding:13px 12px;border-bottom:1px solid var(--ln)}.tbl tbody tr[data-id]{cursor:pointer;transition:.2s}.tbl tbody tr[data-id]:hover{background:var(--s2)}
+.alert{border-left:3px solid var(--wn)}.alert small{color:var(--mu)}.tip{display:flex;gap:14px;align-items:flex-start;animation:rise .5s both}.tip p{margin:0}
+.tip span{flex:none;width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,var(--a),var(--b));color:#04121c;font-weight:700;display:grid;place-items:center}.lock{opacity:.55;pointer-events:none}
+.empty{text-align:center;padding:48px 20px}.empty p{color:var(--mu)}
+.auth{display:grid;grid-template-columns:1.15fr .85fr;min-height:100vh}.hero{display:flex;flex-direction:column;justify-content:center;padding:6vw;gap:18px}
+.hero h1{font-size:clamp(2.4rem,5vw,3.8rem);line-height:1.05;background:linear-gradient(120deg,#fff,var(--a) 60%,var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--mu);max-width:34rem;font-size:1.05rem}.pts{list-style:none;padding:0;margin:6px 0 0;display:grid;gap:10px}
+.pts li:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--a);margin-right:12px;box-shadow:0 0 10px var(--a)}
+.orb{position:relative;width:110px;height:110px;margin:0 0 44px 40px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#b8f6ff,var(--a) 32%,var(--b) 72%,#1a1450);box-shadow:0 0 70px rgba(56,225,255,.45),inset -14px -14px 40px rgba(0,0,0,.45);animation:float 6s ease-in-out infinite}
+.orb span{position:absolute;inset:-18px;border-radius:50%;border:1px dashed rgba(56,225,255,.45);animation:spin 18s linear infinite}.orb span+span{inset:-38px;border-color:rgba(139,123,255,.35);animation-duration:28s;animation-direction:reverse}
+.authp{display:grid;place-items:center;padding:24px}.authp .card{width:min(420px,100%);padding:30px}.authp .logo{padding-left:0}
+#toasts{position:fixed;right:20px;bottom:20px;display:grid;gap:10px;z-index:50}.toast{padding:12px 16px;border-radius:12px;background:#0f1a2d;border:1px solid var(--ln);box-shadow:0 10px 30px rgba(0,0,0,.4);animation:rise .3s both;max-width:340px}
+#fx{position:fixed;inset:0;pointer-events:none;display:none;z-index:60}
+@media(max-width:860px){.auth{grid-template-columns:1fr}.hero{display:none}.app{grid-template-columns:1fr}
+.side{position:fixed;inset:auto 0 0 0;height:auto;z-index:30;flex-direction:row;padding:8px 10px calc(8px + env(safe-area-inset-bottom));border-top:1px solid var(--ln);border-right:0}
+.logo,.who{display:none}.nav{display:flex;width:100%;justify-content:space-around}.nav a{flex-direction:column;gap:3px;font-size:.66rem;padding:8px 6px;text-align:center}.main{padding-bottom:110px}.split{grid-template-columns:1fr}.br{grid-template-columns:100px 1fr 30px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style></head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#38E1FF"/><stop offset="1" stop-color="#8B7BFF"/></linearGradient></defs></svg>
+<div id="root"></div><div id="toasts"></div><canvas id="fx"></canvas>
+<script>
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ICON={report:'M12 5v14M5 12h14',list:'M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01',shield:'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z',chart:'M4 20V10M10 20V4M16 20v-8M22 20H2',bell:'M6 9a6 6 0 0112 0c0 6 2 7 2 7H4s2-1 2-7M10 20a2 2 0 004 0',flask:'M9 3h6M10 3v6l-5 9a2 2 0 002 3h10a2 2 0 002-3l-5-9V3',out:'M9 21H5V3h4M16 17l5-5-5-5M21 12H9'};
+const ico=n=>`<svg viewBox="0 0 24 24"><path d="${ICON[n]}"/></svg>`;
+const SHIELD='<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#04121c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>';
+const CHK='<svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>';
+const SEVC={High:'#FF6B7A',Medium:'#FFB84D',Low:'#3DDC97'},STC={Submitted:'#8696B0','Under review':'#38E1FF',Investigating:'#8B7BFF',Resolved:'#3DDC97',Closed:'#6B7A93'};
+const pill=(t,c)=>`<span class="pill" style="--c:${c||'#8696B0'}">${esc(t)}</span>`;
+const ring=(p,s=132,c='')=>`<div class="ring ${c}" style="width:${s}px;height:${s}px"><svg viewBox="0 0 100 100" width="${s}" height="${s}"><circle class="tr" cx="50" cy="50" r="42"/><circle class="pg" cx="50" cy="50" r="42" stroke-dasharray="264" stroke-dashoffset="264" data-p="${p}"/></svg><b>${p}%</b></div>`;
+const seg=(f,sel)=>`<div class="seg" data-f="${f}">${[['','Unknown'],['1','Yes'],['0','No']].map(([k,l])=>`<button type="button" data-v="${k}" class="${k===sel?'on':''}">${l}</button>`).join('')}</div>`;
+const segSet=(e,o)=>{const b=e.target.closest('button'),g=b&&b.closest('.seg[data-f]');if(!g)return;$$('button',g).forEach(x=>x.classList.toggle('on',x===b));b.dataset.v===''?delete o[g.dataset.f]:o[g.dataset.f]=b.dataset.v==='1'};
+const tbl=(rows,cols)=>`<div class="wrap"><table class="tbl"><thead><tr>${cols.map(c=>`<th>${esc(c[1])}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${cols.map(c=>`<td>${esc(r[c[0]]??'–')}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+let M,U;
+async function api(p,b){const r=await fetch('/api/'+p,b===undefined?{}:{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'Something went wrong');return j}
+function toast(t,bad){const e=document.createElement('div');e.className='toast';if(bad)e.style.borderColor='var(--bd)';e.textContent=t;$('#toasts').append(e);setTimeout(()=>e.remove(),3800)}
+function animate(){requestAnimationFrame(()=>requestAnimationFrame(()=>{
+ $$('.pg').forEach(c=>c.style.strokeDashoffset=264*(1-c.dataset.p/100));$$('.tk i').forEach(i=>i.style.width=i.dataset.w+'%');$$('.stg>*').forEach((e,i)=>e.style.setProperty('--i',i));
+ $$('[data-n]').forEach(e=>{const n=+e.dataset.n,s=e.dataset.s||'',t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/900);e.textContent=Math.round(n*(1-Math.pow(1-p,3)))+s;if(p<1)requestAnimationFrame(f)})(t0)})}))}
+function confetti(){if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;const c=$('#fx'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;c.style.display='block';
+ const P=[...Array(130)].map(()=>({x:innerWidth/2,y:innerHeight*.6,vx:(Math.random()-.5)*15,vy:-Math.random()*15-4,s:4+Math.random()*5,c:['#38E1FF','#8B7BFF','#3DDC97','#FFB84D'][Math.random()*4|0],r:Math.random()*6}));let t=0;
+ (function f(){x.clearRect(0,0,c.width,c.height);P.forEach(p=>{p.vy+=.35;p.x+=p.vx;p.y+=p.vy;p.r+=.2;x.fillStyle=p.c;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);x.restore()});if(++t<120)requestAnimationFrame(f);else c.style.display='none'})()}
+
+function authView(){
+ $('#root').innerHTML=`<div class="auth"><section class="hero"><div class="orb"><span></span><span></span></div><h1>Recover faster.<br>Panic less.</h1><p>Report a cyber incident and get a recovery plan built around what actually happened to you, then track every step until you’re safe.</p><ul class="pts"><li>Personalised steps, ordered by urgency</li><li>Live progress and status updates</li><li>Built for India: 1930, cybercrime.gov.in, RBI rules</li></ul></section>
+ <section class="authp"><form class="card page" id="af"><div class="logo"><i>${SHIELD}</i>CyberShield</div><div class="seg" id="tabs"><button type="button" class="on" data-m="login">Sign in</button><button type="button" data-m="register">Create account</button></div>
+ <label class="f mt">Username</label><input id="un" autocomplete="username" required><label class="f mt">Password</label><input id="pw" type="password" autocomplete="current-password" required><p id="er" class="er"></p><button class="btn wide" id="sb">Sign in</button></form></section></div>`;
+ let mode='login';
+ $('#tabs').onclick=e=>{const b=e.target.closest('button');if(!b)return;mode=b.dataset.m;$$('#tabs button').forEach(x=>x.classList.toggle('on',x===b));$('#sb').textContent=mode==='login'?'Sign in':'Create account';$('#pw').placeholder=mode==='register'?'6+ characters':'';$('#er').textContent=''};
+ $('#af').onsubmit=async e=>{e.preventDefault();$('#er').textContent='';$('#sb').disabled=true;const b={username:$('#un').value,password:$('#pw').value};
+  try{if(mode==='register')await api('register',b);await api('login',b);U=(await api('me')).user;route()}catch(x){$('#er').textContent=x.message;const s=$('#sb');if(s)s.disabled=false}}}
+
+function shell(){const adm=U.role==='admin';
+ const nav=adm?[['complaints','list','Complaints'],['stats','chart','Analytics'],['alerts','bell','Post alert'],['research','flask','Research'],['safe','shield','Stay safe']]:[['report','report','Report incident'],['mine','list','My complaints'],['safe','shield','Stay safe']];
+ $('#root').innerHTML=`<div class="app"><aside class="side"><div class="logo"><i>${SHIELD}</i>CyberShield</div><nav class="nav">${nav.map(([h,i,l])=>`<a href="#/${h}" data-h="${h}">${ico(i)}<span>${l}</span></a>`).join('')}</nav>
+ <div class="who"><div class="av">${esc(U.username[0].toUpperCase())}</div><div><b>${esc(U.username)}</b><div class="mu" style="font-size:.78rem">${adm?'Administrator':'Member'}</div></div><a href="#" id="lo" title="Sign out">${ico('out')}</a></div></aside><main class="main"><div id="pg"></div></main></div>`;
+ $('#lo').onclick=async e=>{e.preventDefault();await api('logout',{});U=null;history.replaceState(null,'',location.pathname);authView()}}
+
+const VIEWS={};
+async function route(){
+ if(!U)return authView();
+ const adm=U.role==='admin',h=location.hash.slice(2)||(adm?'complaints':'report'),[name,arg]=h.split('/');
+ if(!$('#pg'))shell();
+ $$('.nav a').forEach(a=>a.classList.toggle('on',a.dataset.h===name||(name==='c'&&a.dataset.h===(adm?'complaints':'mine'))));
+ const pg=$('#pg');pg.className='';void pg.offsetWidth;pg.className='page';
+ try{await(VIEWS[name]||VIEWS.nf)(pg,arg)}catch(e){pg.innerHTML=`<div class="card"><h2>That didn’t work</h2><p class="mu">${esc(e.message)}</p></div>`}
+ animate();scrollTo(0,0)}
+VIEWS.nf=pg=>{pg.innerHTML='<div class="card empty"><h2>Page not found</h2></div>'};
+
+VIEWS.report=pg=>{
+ const S={also:new Set(),facts:{}};
+ pg.innerHTML=`<h1>Report an incident</h1><p class="sub">Tell us what happened. You’ll get a recovery plan built around your answers.</p><div class="grid stg">
+ <div class="card"><h2>1. What happened</h2><div class="row mt"><div><label class="f">Type of attack</label><select id="at">${Object.keys(M.attacks).map(a=>`<option>${esc(a)}</option>`).join('')}</select></div><div><label class="f">When did it happen</label><input id="wh" type="date"></div></div><div id="nt"></div><label class="f mt">Was anything else affected?</label><div id="al" class="chips"></div></div>
+ <div class="card"><h2>2. A few quick questions</h2><p class="mu">Not sure? Leave it on Unknown. We’ll plan for that.</p><div id="qs"></div></div>
+ <div class="card"><h2>3. Details</h2><div class="row mt"><div><label class="f">Contact (phone or email)</label><input id="ct"></div><div><label class="f">Severity</label><select id="sv"><option value="">Auto (suggested from your answers)</option>${M.levels.map(l=>`<option>${l}</option>`).join('')}</select></div></div>
+ <label class="f mt">Describe what happened</label><textarea id="ds"></textarea><label class="f mt">Evidence, optional (screenshot or file, up to 5 MB)</label><input id="ev" type="file"><div class="mt"><button class="btn" id="go">Create my recovery plan</button></div></div></div>`;
+ const code=()=>M.attacks[$('#at').value][0];
+ const drawQ=()=>{const fl=[...new Set([code(),...S.also].flatMap(i=>M.incidentFacts[i]))];$('#qs').innerHTML=fl.map(f=>`<div class="q"><span>${esc(M.facts[f])}</span>${seg(f,S.facts[f]===true?'1':S.facts[f]===false?'0':'')}</div>`).join('')};
+ const drawA=()=>{const c=code();S.also.delete(c);$('#al').innerHTML=Object.entries(M.incidents).filter(([k])=>k!==c).map(([k,n])=>`<button type="button" class="chip ${S.also.has(k)?'on':''}" data-k="${k}">${esc(n)}</button>`).join('');$('#nt').innerHTML=M.attacks[$('#at').value][2]?'':'<div class="note">This attack type uses the closest guidance we have. It wasn’t part of the evaluation.</div>';drawQ()};
+ $('#at').onchange=drawA;$('#qs').onclick=e=>segSet(e,S.facts);
+ $('#al').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;S.also.has(b.dataset.k)?S.also.delete(b.dataset.k):S.also.add(b.dataset.k);b.classList.toggle('on');drawQ()};
+ drawA();
+ $('#go').onclick=async()=>{const d=$('#ds').value.trim();if(!d)return toast('Add a short description first.',1);
+  const f=$('#ev').files[0];let ev=null;if(f){if(f.size>5e6)return toast('That file is over 5 MB.',1);ev={name:f.name,data:await new Promise(r=>{const fr=new FileReader();fr.onload=()=>r(fr.result.split(',')[1]);fr.readAsDataURL(f)})}}
+  $('#go').disabled=true;try{const r=await api('report',{attack:$('#at').value,also:[...S.also],facts:S.facts,when:$('#wh').value,description:d,contact:$('#ct').value,severity:$('#sv').value,evidence:ev});toast('Complaint '+r.cid+' created');location.hash='#/c/'+r.cid}catch(x){toast(x.message,1);$('#go').disabled=false}}};
+
+VIEWS.mine=async pg=>{const r=await api('complaints');
+ pg.innerHTML=`<h1>My complaints</h1><p class="sub">Open one to follow its recovery plan.</p>`+(r.length?`<div class="grid g3 stg">${r.map(c=>`<div class="card hv" data-id="${esc(c.cid)}"><div class="ctr">${ring(c.pct,68,'sm')}<div><b>${esc(c.attack)}</b><div class="mono">${esc(c.cid)}</div><div class="meta">${pill(c.status,STC[c.status])}${pill(c.severity,SEVC[c.severity])}</div></div></div></div>`).join('')}</div>`:`<div class="card empty"><h2>Nothing reported yet</h2><p>When you report an incident, your plan will appear here.</p><a class="btn" href="#/report">Report an incident</a></div>`);
+ pg.onclick=e=>{const c=e.target.closest('[data-id]');c&&(location.hash='#/c/'+c.dataset.id)}};
+
+VIEWS.complaints=async pg=>{
+ pg.innerHTML=`<h1>Complaints</h1><p class="sub">Highest severity first.</p><div class="card"><div class="row"><div><input id="sq" placeholder="Search by ID, attack, description or investigator"></div><div><select id="ss"><option value="">Any status</option>${M.statuses.map(s=>`<option>${s}</option>`).join('')}</select></div></div><div class="mt"><table class="tbl"><thead><tr><th>ID</th><th>Attack</th><th>Severity</th><th>Status</th><th>Investigator</th><th>Recovery</th></tr></thead><tbody id="tb"></tbody></table></div></div>`;
+ const load=async()=>{const r=await api(`complaints?q=${encodeURIComponent($('#sq').value)}&status=${encodeURIComponent($('#ss').value)}`);$('#tb').innerHTML=r.map(c=>`<tr data-id="${esc(c.cid)}"><td class="mono">${esc(c.cid)}</td><td>${esc(c.attack)}</td><td>${pill(c.severity,SEVC[c.severity])}</td><td>${pill(c.status,STC[c.status])}</td><td>${esc(c.investigator||'Unassigned')}</td><td>${c.pct}%</td></tr>`).join('')||'<tr><td colspan="6" class="mu">No complaints match.</td></tr>'};
+ let t;$('#sq').oninput=()=>{clearTimeout(t);t=setTimeout(load,250)};$('#ss').onchange=load;$('#tb').onclick=e=>{const r=e.target.closest('tr[data-id]');r&&(location.hash='#/c/'+r.dataset.id)};await load()};
+
+VIEWS.c=async(pg,cid)=>{
+ const d=await api('complaint/'+encodeURIComponent(cid)),adm=U.role==='admin';
+ const steps=d.steps.map(s=>`<div class="step ${s.done?'dn':''} ${adm?'ro':''}" data-id="${esc(s.id)}"><div class="bx">${CHK}</div><div><div class="tt">${esc(s.text)}</div><small>${esc(s.why)}</small></div>${s.urg>=5?pill('Do first','#FF6B7A'):s.urg===4?pill('Important','#FFB84D'):''}</div>`).join('');
+ pg.innerHTML=`<a href="#/${adm?'complaints':'mine'}" class="back">← Back</a><div class="hd"><div><h1>${esc(d.attack)}</h1><div class="meta"><span class="mono">${esc(d.cid)}</span>${pill(d.status,STC[d.status])}${pill(d.severity+' severity',SEVC[d.severity])}</div></div><button class="btn gh" id="dl">Download report</button></div>
+ <div class="grid g3 stg"><div class="card ctr">${ring(d.pct)}<div><div class="mu">Recovery</div><div class="big"><span id="dn">${d.done}</span> of ${d.total} steps</div></div></div><div class="card stat"><span>Steps pending</span><b id="pd">${d.total-d.done}</b></div>${adm?`<div class="card stat"><span>Investigator</span><b style="font-size:1.4rem">${esc(d.investigator||'Unassigned')}</b></div>`:`<div class="card stat"><span>Security score</span><b id="sc">–</b></div>`}</div>
+ <div class="split mt"><div><h2>${adm?'The user’s recovery plan':'Your recovery plan'}</h2><p class="mu">${adm?'Read-only view of their progress.':'Click a step when you’ve done it.'}</p><div class="steps stg" id="st">${steps}</div>
+ ${adm?'':`<div class="card mt"><h2>Final security check</h2><div class="mt">${M.finalCheck.map(t=>`<label class="ck"><input type="checkbox"><span>${esc(t)}</span></label>`).join('')}</div></div>`}</div>
+ <div class="grid"><div class="card"><h2>Updates</h2><div class="mt">${d.events.map(e=>`<div class="ev"><i></i><div>${esc(e.note)}<br><small>${esc(e.at.slice(0,16).replace('T',' '))}</small></div></div>`).join('')}</div></div>
+ <div class="card"><h2>Details</h2><p class="mt">${esc(d.description)}</p>${d.contact?`<p class="mu">Contact: ${esc(d.contact)}</p>`:''}${d.facts?`<div class="chips mt">${Object.entries(d.facts).map(([k,v])=>pill(k+': '+(v?'Yes':'No'),v?'#3DDC97':'#8696B0')).join('')}</div>`:''}${d.evidence?`<p class="mt"><a href="/api/evidence/${encodeURIComponent(d.cid)}">Download evidence (${esc(d.evidence)})</a></p>`:''}</div>
+ ${adm?`<form class="card" id="um"><h2>Update this complaint</h2><div class="row mt"><div><label class="f">Status</label><select id="us">${M.statuses.map(s=>`<option ${s===d.status?'selected':''}>${s}</option>`).join('')}</select></div><div><label class="f">Severity</label><select id="uv">${M.levels.map(s=>`<option ${s===d.severity?'selected':''}>${s}</option>`).join('')}</select></div></div><label class="f mt">Investigator</label><input id="ui" value="${esc(d.investigator)}"><label class="f mt">Note to the user, optional</label><input id="uo"><div class="mt"><button class="btn">Save update</button></div></form>`:''}</div></div>`;
+ const sec=()=>{const el=$('#sc');if(!el)return;const p=+$('.pg').dataset.p,k=$$('.ck input:checked').length,s=Math.round(.7*p+30*k/M.finalCheck.length);el.textContent=s>=80?'Good':s>=50?'Fair':'At risk';el.style.color=s>=80?'var(--ok)':s>=50?'var(--wn)':'var(--bd)'};
+ const setP=r=>{const c=$('.pg'),prev=+c.dataset.p;c.dataset.p=r.pct;c.style.strokeDashoffset=264*(1-r.pct/100);$('.ring b').textContent=r.pct+'%';$('#dn').textContent=r.done;$('#pd').textContent=r.total-r.done;sec();if(r.pct===100&&prev<100){confetti();toast('Every step is done. Well done.')}};
+ sec();if(!adm){$$('.ck input').forEach(i=>i.onchange=sec);
+  $('#st').onclick=async e=>{const el=e.target.closest('.step');if(!el)return;const done=!el.classList.contains('dn');el.classList.toggle('dn',done);try{setP(await api('action',{cid:d.cid,action:el.dataset.id,done}))}catch(x){el.classList.toggle('dn',!done);toast(x.message,1)}}}
+ $('#dl').onclick=()=>{const L=$$('.step').map(s=>`[${s.classList.contains('dn')?'x':' '}] ${$('.tt',s).textContent}`);const t=`CyberShield recovery report\nComplaint: ${d.cid}\nAttack: ${d.attack}\nFiled: ${d.created}\nStatus: ${d.status}\nSeverity: ${d.severity}\nRecovery: ${$('.pg').dataset.p}%\n\n${L.join('\n')}\n`;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/plain'}));a.download=d.cid+'_report.txt';a.click()};
+ if(adm)$('#um').onsubmit=async e=>{e.preventDefault();try{await api('admin/update',{cid:d.cid,status:$('#us').value,severity:$('#uv').value,investigator:$('#ui').value,note:$('#uo').value});toast('Saved. The user will see this update.');route()}catch(x){toast(x.message,1)}}};
+
+VIEWS.stats=async pg=>{const a=await api('admin/analytics');
+ const bars=(t,o)=>{const m=Math.max(1,...Object.values(o));return `<div class="card"><h2>${t}</h2>${Object.entries(o).map(([k,v])=>`<div class="br"><span>${esc(k)}</span><div class="tk"><i data-w="${100*v/m}"></i></div><b>${v}</b></div>`).join('')||'<p class="mu mt">No data yet.</p>'}</div>`};
+ pg.innerHTML=`<div class="hd"><div><h1>Analytics</h1><p class="sub">Across all complaints.</p></div><a class="btn gh" href="/api/admin/export.csv">Export CSV</a></div><div class="grid g3 stg"><div class="card stat"><span>Complaints</span><b data-n="${a.total}">0</b></div><div class="card stat"><span>Resolved or closed</span><b data-n="${a.closed}">0</b></div><div class="card stat"><span>Average recovery</span><b data-n="${a.avg}" data-s="%">0</b></div></div><div class="grid g2 mt stg">${bars('By attack type',a.attack)}${bars('By severity',a.severity)}${bars('By status',a.status)}</div>`};
+
+VIEWS.alerts=async pg=>{const al=await api('alerts');
+ pg.innerHTML=`<h1>Post a scam alert</h1><p class="sub">Users see alerts under Stay safe.</p><form class="card" id="fa"><label class="f">Title</label><input id="at" maxlength="120"><label class="f mt">What people should know</label><textarea id="ab"></textarea><div class="mt"><button class="btn">Publish alert</button></div></form><h2 class="mt2">Published</h2><div class="grid mt">${al.map(a=>`<div class="card alert"><b>${esc(a.title)}</b> <small>${esc(a.at.slice(0,10))}</small><p>${esc(a.body)}</p></div>`).join('')||'<div class="card mu">Nothing published yet.</div>'}</div>`;
+ $('#fa').onsubmit=async e=>{e.preventDefault();try{await api('alerts',{title:$('#at').value,body:$('#ab').value});toast('Alert published');route()}catch(x){toast(x.message,1)}}};
+
+VIEWS.safe=async pg=>{const al=await api('alerts'),keys=Object.keys(M.tips);
+ pg.innerHTML=`<h1>Stay safe</h1><p class="sub">Scam alerts and habits that prevent most attacks.</p><h2>Scam alerts</h2><div class="grid mt">${al.map(a=>`<div class="card alert"><b>${esc(a.title)}</b> <small>${esc(a.at.slice(0,10))}</small><p>${esc(a.body)}</p></div>`).join('')||'<div class="card mu">No alerts have been posted yet.</div>'}</div><h2 class="mt2">Good habits</h2><div class="seg mt" id="tt">${keys.map((k,i)=>`<button class="${i?'':'on'}" data-k="${esc(k)}">${esc(k)}</button>`).join('')}</div><div id="tp" class="grid mt"></div>`;
+ const show=k=>{$('#tp').innerHTML=M.tips[k].map((t,i)=>`<div class="card tip" style="animation-delay:${i*70}ms"><span>${i+1}</span><p>${esc(t)}</p></div>`).join('')};show(keys[0]);
+ $('#tt').onclick=e=>{const b=e.target.closest('button');if(!b)return;$$('#tt button').forEach(x=>x.classList.toggle('on',x===b));show(b.dataset.k)}};
+
+async function flow(box,pid,k){
+ if(k>2){box.innerHTML='<div class="card page"><h2>All three cases done</h2><p class="mu">Thank you. The answers are saved.</p></div>';return}
+ const c=await api(`study/case?pid=${encodeURIComponent(pid)}&k=${k}`),t0=Date.now(),obs={},chosen=new Set(),ticks=[];
+ box.innerHTML=`<div class="card page"><div class="mu">Case ${k+1} of 3</div><h2>${c.incidents.map(esc).join(' + ')}</h2><div class="chips mt">${c.facts.map(f=>pill(f.label+': '+(f.value?'Yes':'No'),f.value?'#3DDC97':'#8696B0')).join('')}</div></div><div id="aq"></div><div id="gd"></div>`;
+ const guide=async()=>{const g=await api('study/guidance',{pid,k,obs});
+  $('#gd').innerHTML=`<div class="card mt page"><h2>Tick the actions you would take</h2><div class="steps" id="gs">${g.map(s=>`<div class="step" data-id="${esc(s.id)}"><div class="bx">${CHK}</div><div class="tt">${esc(s.text)}</div></div>`).join('')}</div><div class="row mt"><div><label class="f">I understood what to do and why: <b id="u1">4</b></label><input type="range" id="ru" min="1" max="7" value="4"></div><div><label class="f">I’m confident I’d recover correctly: <b id="u2">4</b></label><input type="range" id="rc" min="1" max="7" value="4"></div></div><div class="mt"><button class="btn" id="sm">Submit this case</button></div></div>`;
+  $('#ru').oninput=e=>$('#u1').textContent=e.target.value;$('#rc').oninput=e=>$('#u2').textContent=e.target.value;
+  $('#gs').onclick=e=>{const s=e.target.closest('.step');if(!s)return;const on=!s.classList.contains('dn');s.classList.toggle('dn',on);on?chosen.add(s.dataset.id):chosen.delete(s.dataset.id);if(on)ticks.push([s.dataset.id,(Date.now()-t0)/1000])};
+  $('#sm').onclick=async()=>{$('#sm').disabled=true;try{await api('study/submit',{pid,k,chosen:[...chosen],ticks,sec_total:(Date.now()-t0)/1000,understanding:+$('#ru').value,confidence:+$('#rc').value});flow(box,pid,k+1)}catch(x){toast(x.message,1);$('#sm').disabled=false}}};
+ if(!c.ask)return guide();
+ $('#aq').innerHTML=`<div class="card mt page"><h2>Answer what you know</h2><div id="qq">${c.facts.map(f=>`<div class="q"><span>${esc(f.label)}</span>${seg(f.id,'')}</div>`).join('')}</div><button class="btn mt" id="sg">Show guidance</button></div>`;
+ $('#qq').onclick=e=>segSet(e,obs);$('#sg').onclick=()=>{$('#aq').firstElementChild.classList.add('lock');guide()}}
+
+VIEWS.research=pg=>{
+ pg.innerHTML=`<h1>Research</h1><p class="sub">Compare fixed, rule-based and intelligent guidance with real participants.</p><div class="seg" id="rt"><button class="on" data-t="s">Study mode</button><button data-t="r">Results</button></div><div id="rb" class="mt"></div>`;
+ const study=()=>{$('#rb').innerHTML=`<div class="card"><label class="f">Participant ID</label><div class="row"><input id="pid" placeholder="e.g. P01"><div><button class="btn" id="stb">Start the 3 cases</button></div></div><p class="mu mt">Cases are fictional. Each uses a different guidance type, rotated across participants.</p></div><div id="sf" class="mt"></div>`;
+  $('#stb').onclick=()=>{const p=$('#pid').value.trim();if(!p)return toast('Enter a participant ID.',1);flow($('#sf'),p,0).catch(x=>toast(x.message,1))}};
+ const results=async()=>{const r=await api('study/results');
+  $('#rb').innerHTML=`<div class="card"><h2>Study results</h2>${r.study?`<p class="mu">${r.study.participants} participants</p>`+tbl(r.study.rows,[['system','System'],['sec_to_first_correct_urgent','Sec to first urgent'],['sec_total','Sec total'],['correctness','Correctness'],['completeness','Completeness'],['unnecessary','Unnecessary'],['understanding','Understanding'],['confidence','Confidence']]):'<p class="mu mt">No study data yet.</p>'}</div><div class="card mt"><h2>Simulation</h2>${r.sim?tbl(r.sim,[['system','System'],['correctness','Correctness'],['completeness','Completeness'],['unnecessary','Unnecessary'],['est_seconds','Est. seconds']]):'<p class="mu mt">Run experiment.py to create it.</p>'}</div>`};
+ $('#rt').onclick=e=>{const b=e.target.closest('button');if(!b)return;$$('#rt button').forEach(x=>x.classList.toggle('on',x===b));b.dataset.t==='s'?study():results()};study()};
+
+addEventListener('hashchange',route);
+(async()=>{try{M=await api('meta');U=(await api('me')).user}catch(e){document.body.textContent='Could not reach the CyberShield server.';return}route()})();
+</script></body></html>
