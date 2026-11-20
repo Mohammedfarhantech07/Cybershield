@@ -278,24 +278,24 @@ class H(BaseHTTPRequestHandler):
         raise Err(404, "Not found")
 
 
+
 def main():
     db.init()
-    port = int(sys.argv[1]) if len(sys.argv) > 1 else 8000
-    for p in range(port, port + 10):
-        try:
-            srv = ThreadingHTTPServer(("127.0.0.1", p), H)   # local only: nobody else on your network can reach it
-            break
-        except OSError:
-            continue
-    else:
-        sys.exit("No free port found.")
-    url = f"http://127.0.0.1:{p}"
-    print(f"CyberShield is running at {url}  (Ctrl+C to stop)")
-    threading.Timer(0.8, lambda: webbrowser.open(url)).start()
+
+    # Render provides the PORT environment variable
+    port = int(os.environ.get("PORT", 8000))
+
+    # Listen on all network interfaces
+    srv = ThreadingHTTPServer(("0.0.0.0", port), H)
+
+    print(f"CyberShield is running on port {port}")
+
     try:
         srv.serve_forever()
     except KeyboardInterrupt:
         print("Stopped.")
+    finally:
+        srv.server_close()
 
 
 if __name__ == "__main__":
