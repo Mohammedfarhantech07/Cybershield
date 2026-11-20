@@ -283,7 +283,8 @@ def main():
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 8000
     for p in range(port, port + 10):
         try:
-            srv = ThreadingHTTPServer(("127.0.0.1", p), H)   # local only: nobody else on your network can reach it
+            port = int(os.environ.get("PORT", "8000"))
+            srv = ThreadingHTTPServer(("0.0.0.0", port), H)
             break
         except OSError:
             continue
